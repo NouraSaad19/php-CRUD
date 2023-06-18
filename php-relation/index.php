@@ -23,11 +23,11 @@ selectData($userId);
       header("Location: index.php?user=".$user);
       exit;
     }elseif($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['deleteData'])){
-      deleteTask($_REQUEST['deleteTask']);
+      deleteTask($_REQUEST['idTask']);
       header("Location: index.php?user=".$user);
       exit;
     }elseif($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['updateData'])){
-      updateTask($_REQUEST['oldtask'] , $_REQUEST['updatetasks']);
+      updateTask($_REQUEST['idTaskUpdate'] , $_REQUEST['updatetasks']);
       header("Location: index.php?user=".$user);
       exit;
     }
@@ -41,8 +41,8 @@ selectData($userId);
 
 <br/><br/>
 <div class="form_group">
-<label>your old Task</label>
-<input type="text" name="oldtask" placholder="oldtask">
+<label>your id Task</label>
+<input type="text" name="idTaskUpdate" placholder="oldtask">
 </div>
 <div class="form_group">
 <label>Enter the update you want :</label>
@@ -53,7 +53,7 @@ selectData($userId);
 <br/><br/>
 <div class="form_group">
 <label>delete your Task</label>
-<input type="text" name="deleteTask" placholder="deleteId">
+<input type="text" name="idTask" placholder="deleteId">
 </div>
 <input type="submit" name="deleteData" value="delete" />
 </form>

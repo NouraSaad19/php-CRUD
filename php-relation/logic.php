@@ -13,9 +13,10 @@ if (!$conn) {
 }
 
 
-//sql to create table
-// $sqlCreate = "CREATE TABLE MyToDo (
+// sql to create table
+// $sqlCreate = "CREATE TABLE MyToDo(
 // id INT(6) ,
+// idTask INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 // MyTask VARCHAR(60) NOT NULL
 // )";
 // if (mysqli_query($conn , $sqlCreate)) {
@@ -57,13 +58,13 @@ function returnIdUser($userName){
 
 //sql returnIdUser
 function selectData($userId){
-    $sqlSelsect = "SELECT id , MyTask FROM MyToDo where id='$userId'";
+    $sqlSelsect = "SELECT id ,idTask , MyTask FROM MyToDo where id='$userId'";
     $result = mysqli_query($GLOBALS["conn"], $sqlSelsect);
     $id = 0;
     if (mysqli_num_rows($result) > 0) {
       // output data of each row
       while($row = mysqli_fetch_assoc($result)) {
-        echo "id: " . $row["id"]. " -My Task: " . $row["MyTask"]. "<br>";
+        echo "id: ".$row["id"]." id Task: ". $row["idTask"]." -My Task: ".$row["MyTask"]. "<br>";
        
       }
     } else {
@@ -74,8 +75,8 @@ function selectData($userId){
 
 
 //sql update data 
-function updateTask($oldtask , $updatetasks){
-  $sqlUpdate = "UPDATE MyToDo SET MyTask='$updatetasks' WHERE MyTask='$oldtask'";
+function updateTask($idTask , $updatetasks){
+  $sqlUpdate = "UPDATE MyToDo SET MyTask='$updatetasks' WHERE idTask='$idTask'";
   if (mysqli_query($GLOBALS["conn"], $sqlUpdate)) {
     echo $myTask;
     echo "update successfully"."<br>";
@@ -86,8 +87,8 @@ function updateTask($oldtask , $updatetasks){
 
 
 //sql delete data 
-function deleteTask($deleteTask){
-  $sqlDelete = "DELETE FROM MyToDo WHERE MyTask='$deleteTask'";
+function deleteTask($idTask){
+  $sqlDelete = "DELETE FROM MyToDo WHERE idTask='$idTask'";
   if (mysqli_query($GLOBALS["conn"], $sqlDelete)) {
     echo "delete successfully"."<br>";
   } else {
